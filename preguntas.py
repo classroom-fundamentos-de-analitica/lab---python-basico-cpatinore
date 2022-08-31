@@ -274,7 +274,7 @@ def pregunta_07():
                 dic[number]=[leter]
     resp=[]
     for number in sorted(dic):
-        resp.append((number,dic[number]))
+        resp.append((int(number),dic[number]))
 
     return resp
 
@@ -318,7 +318,7 @@ def pregunta_08():
                 dic[number]={leter:leter}
     resp=[]
     for number in sorted(dic):
-        resp.append((number,sorted(dic[number])))
+        resp.append((int(number),sorted(dic[number])))
 
     return resp
 
