@@ -21,8 +21,18 @@ def pregunta_01():
     214
 
     """
-    return
+    import csv
 
+    sum= 0
+    with open('data.csv', newline='') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        for row in spamreader:
+            x=', '.join(row)
+            sum+=int(x.split()[1])
+
+    return sum
+#print("Pregunta 1:")
+#print(pregunta_01())
 
 def pregunta_02():
     """
@@ -39,8 +49,26 @@ def pregunta_02():
     ]
 
     """
-    return
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            leter=columnas[0]
 
+            if leter in dic:
+                dic[leter]+=1
+            else:
+                dic[leter]=1
+    resp=[]
+    for leter in sorted(dic):
+        resp.append((leter,dic[leter]))
+
+    return resp
+
+#print("Pregunta 2:")
+#print(pregunta_02())
 
 def pregunta_03():
     """
@@ -57,8 +85,26 @@ def pregunta_03():
     ]
 
     """
-    return
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            leter, number=columnas[0], columnas[1]
 
+            if leter in dic:
+                dic[leter]+=int(number)
+            else:
+                dic[leter]=int(number)
+    resp=[]
+    for leter in sorted(dic):
+        resp.append((leter,dic[leter]))
+
+    return resp
+
+#print("Pregunta 3:")
+#print(pregunta_03())
 
 def pregunta_04():
     """
@@ -82,8 +128,26 @@ def pregunta_04():
     ]
 
     """
-    return
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            mes=columnas[2].split("-")[1]
 
+            if mes in dic:
+                dic[mes]+=1
+            else:
+                dic[mes]=1
+    resp=[]
+    for mes in sorted(dic):
+        resp.append((mes,dic[mes]))
+
+    return resp
+
+#print("Pregunta 4:")
+#print(pregunta_04())
 
 def pregunta_05():
     """
@@ -100,8 +164,30 @@ def pregunta_05():
     ]
 
     """
-    return
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            leter, number=columnas[0], columnas[1]
 
+            if leter in dic:
+                if dic[leter][0] < int(number):
+                    dic[leter][0]=int(number)
+
+                if dic[leter][1] > int(number):
+                    dic[leter][1]=int(number)
+            else:
+                dic[leter]=[int(number),int(number)]
+    resp=[]
+    for leter in sorted(dic):
+        resp.append((leter,dic[leter][0],dic[leter][1]))
+
+    return resp
+
+#print("Pregunta 5:")
+#print(pregunta_05())
 
 def pregunta_06():
     """
@@ -125,8 +211,32 @@ def pregunta_06():
     ]
 
     """
-    return
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            strings=columnas[4].split(",")
+            for string in strings:
+                leter,number=string.split(":")[0],string.split(":")[1]
 
+                if leter in dic:
+                    if dic[leter][1] < int(number):
+                        dic[leter][1]=int(number)
+
+                    if dic[leter][0] > int(number):
+                        dic[leter][0]=int(number)
+                else:
+                    dic[leter]=[int(number),int(number)]
+    resp=[]
+    for leter in sorted(dic):
+        resp.append((leter,dic[leter][0],dic[leter][1]))
+
+    return resp
+
+#print("Pregunta 6:")
+#print(pregunta_06())
 
 def pregunta_07():
     """
@@ -149,8 +259,27 @@ def pregunta_07():
     ]
 
     """
-    return
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
 
+            columnas=row.split()
+            leter, number=columnas[0], columnas[1]
+
+            if number in dic:
+                dic[number].append(leter)
+            else:
+                dic[number]=[leter]
+    resp=[]
+    for number in sorted(dic):
+        resp.append((number,dic[number]))
+
+    return resp
+
+#print("Pregunta 7:")
+#print(pregunta_07())
 
 def pregunta_08():
     """
@@ -174,8 +303,27 @@ def pregunta_08():
     ]
 
     """
-    return
 
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            leter, number=columnas[0], columnas[1]
+
+            if number in dic:
+                dic[number][leter]=leter
+            else:
+                dic[number]={leter:leter}
+    resp=[]
+    for number in sorted(dic):
+        resp.append((number,sorted(dic[number])))
+
+    return resp
+
+#print("Pregunta 8:")
+#print(pregunta_08())
 
 def pregunta_09():
     """
@@ -197,8 +345,25 @@ def pregunta_09():
     }
 
     """
-    return
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            strings=columnas[4].split(",")
+            for string in strings:
+                leter=string.split(":")[0]
 
+                if leter in dic:
+                    dic[leter]+=1
+                else:
+                    dic[leter]=1
+
+    return dic
+
+#print("Pregunta 9:")
+#print(pregunta_09())
 
 def pregunta_10():
     """
@@ -218,8 +383,20 @@ def pregunta_10():
 
 
     """
-    return
 
+    resp= []
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            leter, C4, C5=columnas[0], len(columnas[3].split(",")), len(columnas[4].split(","))
+            resp.append((leter,C4,C5))
+
+    return resp
+
+#print("Pregunta 10:")
+#print(pregunta_10())
 
 def pregunta_11():
     """
@@ -239,8 +416,26 @@ def pregunta_11():
 
 
     """
-    return
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            strings=columnas[3].split(",")
+            number=int(columnas[1])
+            for string in strings:
+                leter=string
 
+                if leter in dic:
+                    dic[leter]+=number
+                else:
+                    dic[leter]=number
+
+    return dic
+
+#print("Pregunta 11:")
+#print(pregunta_11())
 
 def pregunta_12():
     """
@@ -257,4 +452,22 @@ def pregunta_12():
     }
 
     """
-    return
+    dic= {}
+    with open('data.csv', 'r') as csvfile:
+        lines = csvfile.readlines()
+        for row in lines:
+            row=row.replace("\n", "")
+            columnas=row.split()
+            strings=columnas[4].split(",")
+            sum=0
+            for string in strings:
+                sum+=int(string.split(":")[1])
+            leter=columnas[0]
+            if leter in dic:
+                dic[leter]+=sum
+            else:
+                dic[leter]=sum
+
+    return dic
+#print("Pregunta 12:")
+#print(pregunta_12())
